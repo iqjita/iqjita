@@ -578,56 +578,67 @@
 
       function clearError(id) { showError(id, ''); }
 
-      // Clear error on user input
-      ['cf-name','cf-phone','cf-email','cf-course','cf-message'].forEach(function(fid) {
-        var el = document.getElementById(fid);
-        if (el) el.addEventListener('input', function() { clearError('err-' + fid.replace('cf-','')); });
+      // Per-field validators
+      function validateName() {
+        var v = document.getElementById('cf-name').value.trim();
+        if (!v) { showError('err-name', 'Full name is required.'); return false; }
+        if (v.length < 2) { showError('err-name', 'Please enter a valid name.'); return false; }
+        clearError('err-name'); return true;
+      }
+      function validatePhone() {
+        var v = document.getElementById('cf-phone').value.trim();
+        if (v && !/^[\d\s\+\-\(\)]{7,15}$/.test(v)) { showError('err-phone', 'Enter a valid phone number.'); return false; }
+        clearError('err-phone'); return true;
+      }
+      function validateEmail() {
+        var v = document.getElementById('cf-email').value.trim();
+        if (!v) { showError('err-email', 'Email address is required.'); return false; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { showError('err-email', 'Enter a valid email address.'); return false; }
+        clearError('err-email'); return true;
+      }
+      function validateCourse() {
+        var v = document.getElementById('cf-course').value.trim();
+        if (!v) { showError('err-course', 'Please select a course.'); return false; }
+        clearError('err-course'); return true;
+      }
+      function validateMessage() {
+        var v = document.getElementById('cf-message').value.trim();
+        if (!v) { showError('err-message', 'Please enter your message.'); return false; }
+        if (v.length < 10) { showError('err-message', 'Message must be at least 10 characters.'); return false; }
+        clearError('err-message'); return true;
+      }
+
+      // Real-time validation: check on blur and re-check on every input change
+      var rules = [
+        { id: 'cf-name',    fn: validateName },
+        { id: 'cf-phone',   fn: validatePhone },
+        { id: 'cf-email',   fn: validateEmail },
+        { id: 'cf-course',  fn: validateCourse },
+        { id: 'cf-message', fn: validateMessage }
+      ];
+      rules.forEach(function(r) {
+        var el = document.getElementById(r.id);
+        if (!el) return;
+        el.addEventListener('blur',   function() { r.fn(); });
+        el.addEventListener('input',  function() { r.fn(); });
+        el.addEventListener('change', function() { r.fn(); }); // for select
       });
 
-      function validate() {
-        var ok = true;
-        var name  = document.getElementById('cf-name').value.trim();
-        var phone = document.getElementById('cf-phone').value.trim();
-        var email = document.getElementById('cf-email').value.trim();
-        var course= document.getElementById('cf-course').value.trim();
-        var msg   = document.getElementById('cf-message').value.trim();
-
-        if (!name) {
-          showError('err-name', 'Full name is required.'); ok = false;
-        } else if (name.length < 2) {
-          showError('err-name', 'Please enter a valid name.'); ok = false;
-        } else { clearError('err-name'); }
-
-        if (phone && !/^[\d\s\+\-\(\)]{7,15}$/.test(phone)) {
-          showError('err-phone', 'Enter a valid phone number.'); ok = false;
-        } else { clearError('err-phone'); }
-
-        if (!email) {
-          showError('err-email', 'Email address is required.'); ok = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          showError('err-email', 'Enter a valid email address.'); ok = false;
-        } else { clearError('err-email'); }
-
-        if (!course) {
-          showError('err-course', 'Please select a course.'); ok = false;
-        } else { clearError('err-course'); }
-
-        if (!msg) {
-          showError('err-message', 'Please enter your message.'); ok = false;
-        } else if (msg.length < 10) {
-          showError('err-message', 'Message must be at least 10 characters.'); ok = false;
-        } else { clearError('err-message'); }
-
-        return ok;
+      function validateAll() {
+        return rules.map(function(r) { return r.fn(); }).every(Boolean);
       }
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        if (!validate()) return;
+        if (!validateAll()) {
+          var first = form.querySelector('.cf-input-error');
+          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
 
         var btn = document.getElementById('cfSubmitBtn');
         btn.disabled = true;
-        btn.innerHTML = 'Sending… <i class="fas fa-spinner fa-spin"></i>';
+        btn.innerHTML = 'Sending\u2026 <i class="fas fa-spinner fa-spin"></i>';
 
         var data = new FormData(form);
         data.append('_subject', 'New Enquiry from 2nd Web \u2014 IQJITA Academy');
