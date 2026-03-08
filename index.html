@@ -427,14 +427,8 @@
             <h3 class="contact-form-heading">Send Us a Message</h3>
             <p class="contact-form-sub">Fill out the form and our team will get back to you within 24 hours.</p>
 
-            <!-- FormSubmit.co delivers submissions to iqjita@gmail.com -->
-            <form action="https://formsubmit.co/el/nexila" method="POST" class="contact-form" id="contactForm">
-              <!-- Hidden config -->
-              <input type="hidden" name="_subject" value="New Enquiry from 2nd Web — IQJITA Academy">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_next" value="https://www.iqjita.com/thankyou.html">
-              <input type="hidden" name="_honey" value="" style="display:none">
+            <!-- Form sends enquiry directly to WhatsApp -->
+            <form class="contact-form" id="contactForm" novalidate>
 
               <div class="row g-3">
                 <div class="col-sm-6">
@@ -478,15 +472,8 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <!-- reCAPTCHA v2 — replace data-sitekey with your own key from https://www.google.com/recaptcha/admin -->
-                  <div class="cf-recaptcha">
-                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="light" data-size="normal"></div>
-                    <p class="cf-recaptcha-error" id="recaptchaError">Please complete the CAPTCHA verification.</p>
-                  </div>
-                </div>
-                <div class="col-12">
                   <button type="submit" class="cf-submit" id="cfSubmitBtn">
-                    Send Message &nbsp;<i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    Send on WhatsApp &nbsp;<i class="fab fa-whatsapp" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -558,15 +545,12 @@
       <hr class="footer-divider my-4">
       <div class="text-center">
         <p class="mb-1">&copy; Copyright IQJITA. All Rights Reserved</p>
-        <p class="small text-muted">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> apply.</p>
       </div>
     </div>
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Google reCAPTCHA v2 -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <!-- Scrollspy -->
   <script>
     (function () {
@@ -618,20 +602,28 @@
       });
     })();
   </script>
+  <!-- WhatsApp form handler -->
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-      var response = grecaptcha.getResponse();
-      var errorEl = document.getElementById('recaptchaError');
-      if (!response) {
-        e.preventDefault();
-        errorEl.style.display = 'block';
-        document.querySelector('.cf-recaptcha').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        errorEl.style.display = 'none';
-      }
+      e.preventDefault();
+      var name    = document.getElementById('cf-name').value.trim();
+      var phone   = document.getElementById('cf-phone').value.trim();
+      var email   = document.getElementById('cf-email').value.trim();
+      var course  = document.getElementById('cf-course').value.trim();
+      var message = document.getElementById('cf-message').value.trim();
+
+      var text =
+        'Hello IQJITA Academy! 👋\n' +
+        '*New Enquiry — 2nd Web*\n\n' +
+        '👤 *Name:* '    + (name    || 'N/A') + '\n' +
+        '📞 *Phone:* '   + (phone   || 'N/A') + '\n' +
+        '✉️ *Email:* '   + (email   || 'N/A') + '\n' +
+        '📚 *Course:* '  + (course  || 'N/A') + '\n' +
+        '💬 *Message:* ' + (message || 'N/A');
+
+      var waUrl = 'https://wa.me/916235774801?text=' + encodeURIComponent(text);
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
     });
   </script>
 </body>
 </html>
-
-
