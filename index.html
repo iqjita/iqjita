@@ -574,15 +574,22 @@
         headers: { 'Accept': 'application/json' },
         body: data
       })
-      .then(function(res) { return res.json(); })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Network error');
+        return res.json();
+      })
       .then(function(json) {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('cf-success').style.display = 'block';
+        if (json.success === 'true' || json.success === true) {
+          document.getElementById('contactForm').style.display = 'none';
+          document.getElementById('cf-success').style.display = 'block';
+        } else {
+          throw new Error('Submission failed');
+        }
       })
       .catch(function() {
         btn.disabled = false;
         btn.innerHTML = 'Send Message &nbsp;<i class="fas fa-paper-plane"></i>';
-        alert('Something went wrong. Please try again or contact us directly.');
+        alert('Something went wrong. Please try again or call us directly at +91 6235774801.');
       });
     });
   </script>
@@ -640,4 +647,3 @@
 
 </body>
 </html>
-
