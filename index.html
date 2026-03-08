@@ -18,12 +18,25 @@
   <meta name="twitter:title" content="Best Diploma Courses in Kottakkal &amp; Malappuram | IQJITA Academy">
   <meta name="twitter:description" content="Top diploma institute in Kottakkal &amp; Perinthalmanna with 100% placement assistance.">
   <meta name="twitter:image" content="https://www.iqjita.com/main-images/NewLogoIQ.png">
+  <!-- Resource hints — eliminate DNS + TLS handshake time for every CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.iqjita.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://www.iqjita.com">
+  <!-- Preload LCP image (hero) so it is fetched in the very first round-trip -->
+  <link rel="preload" as="image" href="https://www.iqjita.com/main-images/sir.png" fetchpriority="high">
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome — loaded async so it never blocks rendering -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <!-- Structured Data: WebSite -->
   <script type="application/ld+json">
@@ -95,22 +108,26 @@
 </head>
 <body>
 
+  <!-- Skip to main content -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- Top Bar -->
-  <div class="topbar">
+  <header>
+  <div class="topbar" role="complementary" aria-label="Contact information and social links">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center flex-wrap gap-1">
         <div>
-          <i class="fas fa-map-marker-alt me-1"></i> Kottakkal &amp; Perinthalmanna, Malappuram, Kerala
+          <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i> Kottakkal &amp; Perinthalmanna, Malappuram, Kerala
         </div>
         <div class="d-flex gap-3">
-          <a href="tel:+916235774801"><i class="fas fa-phone me-1"></i>+91 6235774801</a>
-          <span class="topbar-divider">|</span>
-          <a href="mailto:info@iqjita.com"><i class="fas fa-envelope me-1"></i>info@iqjita.com</a>
-          <span class="topbar-divider d-none d-md-inline">|</span>
+          <a href="tel:+916235774801" aria-label="Call us: +91 6235774801"><i class="fas fa-phone me-1" aria-hidden="true"></i>+91 6235774801</a>
+          <span class="topbar-divider" aria-hidden="true">|</span>
+          <a href="mailto:info@iqjita.com" aria-label="Email us: info@iqjita.com"><i class="fas fa-envelope me-1" aria-hidden="true"></i>info@iqjita.com</a>
+          <span class="topbar-divider d-none d-md-inline" aria-hidden="true">|</span>
           <span class="d-none d-md-flex gap-2">
-            <a href="https://www.facebook.com/iqjita/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/iqjita/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/iqjita/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/iqjita/" target="_blank" rel="noopener noreferrer" aria-label="IQJITA Academy on Facebook (opens in new tab)"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/iqjita/" target="_blank" rel="noopener noreferrer" aria-label="IQJITA Academy on Instagram (opens in new tab)"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/company/iqjita/" target="_blank" rel="noopener noreferrer" aria-label="IQJITA Academy on LinkedIn (opens in new tab)"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
           </span>
         </div>
       </div>
@@ -118,7 +135,7 @@
   </div>
 
   <!-- Floating Contact Icons -->
-  <div class="floating-icons">
+  <div class="floating-icons" role="complementary" aria-label="Quick contact links">
     <a href="tel:+916235774801" aria-label="Call IQJITA Academy" class="float-icon float-phone">
       <i class="fas fa-phone" aria-hidden="true"></i>
     </a>
@@ -131,10 +148,10 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg sticky-top" id="mainNav" aria-label="Main navigation">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="https://www.iqjita.com/main-images/NewLogoIQ.png" alt="IQJITA Academy Logo" height="50" width="auto">
+      <a class="navbar-brand" href="index.html" aria-label="IQJITA Academy — go to homepage">
+        <img src="https://www.iqjita.com/main-images/NewLogoIQ.png" alt="IQJITA Academy Logo" height="50" loading="eager" fetchpriority="high" decoding="sync" style="width:auto;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,14 +169,17 @@
       </div>
     </div>
   </nav>
+  </header>
+
+  <main id="main-content">
 
   <!-- Hero Section -->
-  <section class="hero-section" id="home">
+  <section class="hero-section" id="home" aria-labelledby="hero-heading">
     <div class="container">
-      <div class="row align-items-center min-vh-80 g-5">
+      <div class="row align-items-center g-5">
         <div class="col-lg-6 hero-text">
-          <div class="hero-badge"><i class="fas fa-award"></i> #1 Diploma Institute in Malappuram</div>
-          <h1 class="hero-title">Learn With Purpose,<br>Grow With <span>IQJITA</span></h1>
+          <div class="hero-badge"><i class="fas fa-award" aria-hidden="true"></i> #1 Diploma Institute in Malappuram</div>
+          <h1 class="hero-title" id="hero-heading">Learn With Purpose,<br>Grow With <span>IQJITA</span></h1>
           <p class="hero-subtitle">Industry-ready diploma programs in Kottakkal &amp; Perinthalmanna. Practical learning, expert mentors, and 100% placement assistance — all in one place.</p>
           <div class="d-flex flex-wrap gap-3">
             <a href="#contact" class="hero-cta">Enroll Now</a>
@@ -167,14 +187,17 @@
           </div>
         </div>
         <div class="col-lg-6 hero-image text-center">
-          <img src="https://www.iqjita.com/main-images/sir.png" alt="Afthab &amp; Jaseem — Founders of IQJITA Academy, the best diploma course institute in Kottakkal, Perinthalmanna, Malappuram" class="img-fluid hero-img">
+          <img src="https://www.iqjita.com/main-images/sir.png" alt="Afthab &amp; Jaseem — Founders of IQJITA Academy, the best diploma course institute in Kottakkal, Perinthalmanna, Malappuram" class="img-fluid hero-img" width="600" height="520" loading="eager" fetchpriority="high" decoding="sync">
         </div>
       </div>
-    </div>
-  </section>
+    </div>    <!-- Scroll hint -->
+    <a href="#about" class="hero-scroll-hint" aria-label="Scroll to about section">
+      Scroll
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </a>  </section>
 
   <!-- Stats Strip -->
-  <section class="stats-section">
+  <section class="stats-section" aria-label="IQJITA Academy at a glance">
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-6 col-md-3"><div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Students Placed</span></div></div>
@@ -189,12 +212,12 @@
   </section>
 
   <!-- About Section -->
-  <section class="about-section py-5" id="about">
+  <section class="about-section py-5" id="about" aria-labelledby="about-heading">
     <div class="container">
       <div class="row align-items-center g-4">
         <div class="col-lg-6">
           <div class="about-img-wrap">
-            <img src="https://www.iqjita.com/main-images/hero-bg2.jpg" alt="Graduation ceremony at IQJITA Academy — students from the best diploma course institute in Kottakkal, Perinthalmanna, Malappuram celebrating with certificates and caps" class="img-fluid rounded shadow">
+            <img src="https://www.iqjita.com/main-images/hero-bg2.jpg" alt="Graduation ceremony at IQJITA Academy — students from the best diploma course institute in Kottakkal, Perinthalmanna, Malappuram celebrating with certificates and caps" class="img-fluid rounded shadow" width="600" height="450" loading="lazy" decoding="async">
             <div class="about-badge">
               <strong>500+</strong>
               <span>Students Placed</span>
@@ -203,7 +226,7 @@
         </div>
         <div class="col-lg-6">
           <span class="section-label">About IQJITA</span>
-          <h2 class="section-heading text-start">Welcome to IQJITA Academy</h2>
+          <h2 class="section-heading text-start" id="about-heading">Welcome to IQJITA Academy</h2>
           <p>IQJITA is the Best Diploma Courses Institute in Kottakkal and Perinthalmanna, Malappuram. We offer diverse diploma courses, including Digital Marketing, Human Resource Management, Graphic Design, Full Stack Development, Logistics and Supply Chain Management, Office Administration, International Marketing and Corporate Sales and AI &amp; Data Science — all designed to meet the demands of today's competitive job market.</p>
           <p>As the Best Diploma Institute in Malappuram, we provide a perfect blend of theoretical knowledge and practical skills to ensure our students excel in their chosen careers. We also offer 100% placement assistance, underscoring our commitment to your success.</p>
           <p>Our respected managing directors — Mr. Jaseem T, Mr. Muhammad Ashif A, Mr. Afthab PA, and Mr. Hisham Thorakkal — whose years of industry experience and visionary leadership are integral to our mission. Our expert trainers ensure that our students receive the highest quality education, preparing them to thrive in their careers.</p>
@@ -214,36 +237,105 @@
   </section>
 
   <!-- Why IQJITA -->
-  <section class="why-section py-5 bg-light" id="why">
-    <div class="container">
-      <h2 class="text-center section-heading mb-2">WHY IQJITA?</h2>
-      <p class="text-center section-label mb-2">Best Diploma Courses in Kottakkal, Malappuram</p>
-      <p class="text-center mb-5">We offer the top Diploma Courses in Kottakkal, Malappuram. Our course is designed to provide students with unparalleled knowledge and practical skills. As a Top Academy in Kerala, our expertly designed curriculum and experienced faculty highlight our commitment to excellence. Whether you're looking to enhance your skills or start a new career, IQJITA Academy is the perfect platform for your success.</p>
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-graduation-cap fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Comprehensive Diploma Courses</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-chalkboard-teacher fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Experienced &amp; Dedicated Faculty</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-star fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Leadership Excellence</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-hands-on fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Hands-on Learning</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-desktop fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Computer Lab Facilities</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-certificate fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">International Certifications</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-user-friends fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Personalised Support</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-tv fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Digital Classroom</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-language fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">English Language Training</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-briefcase fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Interview Training Sessions</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-trophy fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Proven Success Record</p></div></div>
-        <div class="col"><div class="feature-card p-3 text-center rounded h-100"><div class="feature-icon"><i class="fas fa-infinity fa-lg text-primary" aria-hidden="true"></i></div><p class="mb-0 fw-semibold">Lifetime Placement Assistance</p></div></div>
+  <section class="why-section" id="why" aria-labelledby="why-heading">
+    <!-- Top: dark header band -->
+    <div class="why-header">
+      <div class="container">
+        <div class="row align-items-end g-4">
+          <div class="col-lg-6">
+            <span class="section-label" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);">Why Choose Us</span>
+            <h2 class="why-big-title" id="why-heading">Why <span>IQJITA?</span></h2>
+          </div>
+          <div class="col-lg-6">
+            <p class="why-lead">We offer the top Diploma Courses in Kottakkal &amp; Perinthalmanna, Malappuram. Our expertly designed curriculum, experienced faculty, and 100% placement assistance make us the perfect platform for your career success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="why-cards-wrap">
+      <div class="container">
+        <div class="row g-4">
+
+          <div class="col-md-6 col-lg-4">
+            <div class="why-card">
+              <span class="why-num">01</span>
+              <div class="why-card-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+              <h3 class="why-card-title">Comprehensive Diploma Courses</h3>
+              <p class="why-card-text">8 industry-aligned programs covering Digital Marketing, AI, Full Stack Dev, HR, and more.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="why-card">
+              <span class="why-num">02</span>
+              <div class="why-card-icon"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i></div>
+              <h3 class="why-card-title">Experienced Faculty</h3>
+              <p class="why-card-text">Learn from industry practitioners with real-world experience and a passion for teaching.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="why-card">
+              <span class="why-num">03</span>
+              <div class="why-card-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+              <h3 class="why-card-title">100% Placement Support</h3>
+              <p class="why-card-text">Dedicated placement cell with interview prep, mock tests, and lifetime job assistance.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="why-card">
+              <span class="why-num">04</span>
+              <div class="why-card-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
+              <h3 class="why-card-title">Hands-on Learning</h3>
+              <p class="why-card-text">Practical projects and live tools training ensure you graduate job-ready from day one.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="why-card">
+              <span class="why-num">05</span>
+              <div class="why-card-icon"><i class="fas fa-certificate" aria-hidden="true"></i></div>
+              <h3 class="why-card-title">International Certifications</h3>
+              <p class="why-card-text">Earn recognised certificates that boost your resume and open global career doors.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="why-card">
+              <span class="why-num">06</span>
+              <div class="why-card-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+              <h3 class="why-card-title">Personalised Support</h3>
+              <p class="why-card-text">Small batch sizes and dedicated mentors mean every student gets the attention they deserve.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Secondary feature pills -->
+        <div class="why-pills">
+          <span class="why-pill"><i class="fas fa-desktop" aria-hidden="true"></i> Digital Classroom</span>
+          <span class="why-pill"><i class="fas fa-language" aria-hidden="true"></i> English Language Training</span>
+          <span class="why-pill"><i class="fas fa-trophy" aria-hidden="true"></i> Proven Success Record</span>
+          <span class="why-pill"><i class="fas fa-star" aria-hidden="true"></i> Leadership Excellence</span>
+          <span class="why-pill"><i class="fas fa-infinity" aria-hidden="true"></i> Lifetime Placement Assistance</span>
+          <span class="why-pill"><i class="fas fa-tv" aria-hidden="true"></i> Computer Lab Facilities</span>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Courses Section -->
-  <section class="courses-section py-5" id="courses">
+  <section class="courses-section py-5" id="courses" aria-labelledby="courses-heading">
     <div class="container">
       <span class="section-label d-block text-center">Our Programs</span>
-      <h2 class="text-center section-heading mb-5">CHECK OUR COURSES</h2>
+      <h2 class="text-center section-heading mb-5" id="courses-heading">CHECK OUR COURSES</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <div class="col">
-          <a href="dm.html" class="course-card-link">
+          <a href="dm.html" class="course-card-link" aria-label="Digital Marketing diploma — 6 to 9 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-bullhorn fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">Digital Marketing</h3><span class="course-duration"><i class="fas fa-clock"></i> 6 – 9 months</span></div>
@@ -251,7 +343,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="gd.html" class="course-card-link">
+          <a href="gd.html" class="course-card-link" aria-label="Graphic Designing diploma — 4 to 10 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-paint-brush fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">Graphic Designing</h3><span class="course-duration"><i class="fas fa-clock"></i> 4 – 10 months</span></div>
@@ -259,7 +351,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="web.html" class="course-card-link">
+          <a href="web.html" class="course-card-link" aria-label="Full Stack Development diploma — 7 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-code fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">Full Stack Development</h3><span class="course-duration"><i class="fas fa-clock"></i> 7 months</span></div>
@@ -267,7 +359,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="oa.html" class="course-card-link">
+          <a href="oa.html" class="course-card-link" aria-label="Office Administration diploma — 4 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-file-alt fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">Office Administration</h3><span class="course-duration"><i class="fas fa-clock"></i> 4 months</span></div>
@@ -275,7 +367,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="hr.html" class="course-card-link">
+          <a href="hr.html" class="course-card-link" aria-label="Human Resource Management diploma — up to 12 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-users fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">Human Resource Management</h3><span class="course-duration"><i class="fas fa-clock"></i> Up to 12 months</span></div>
@@ -283,7 +375,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="log.html" class="course-card-link">
+          <a href="log.html" class="course-card-link" aria-label="Logistics and Supply Chain Management diploma — up to 12 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-truck fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">Logistics &amp; Supply Chain Management</h3><span class="course-duration"><i class="fas fa-clock"></i> Up to 12 months</span></div>
@@ -291,7 +383,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="ai.html" class="course-card-link">
+          <a href="ai.html" class="course-card-link" aria-label="AI and Data Science diploma — up to 12 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-robot fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">AI &amp; Data Science</h3><span class="course-duration"><i class="fas fa-clock"></i> Up to 12 months</span></div>
@@ -299,7 +391,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="sales.html" class="course-card-link">
+          <a href="sales.html" class="course-card-link" aria-label="International Marketing and Corporate Sales diploma — up to 12 months. Learn more.">
             <div class="course-card">
               <div class="course-card-top"><i class="fas fa-chart-line fa-3x text-white" aria-hidden="true"></i></div>
               <div class="course-card-body"><h3 class="course-card-title">International Marketing &amp; Corporate Sales</h3><span class="course-duration"><i class="fas fa-clock"></i> Up to 12 months</span></div>
@@ -311,15 +403,15 @@
   </section>
 
   <!-- Testimonials -->
-  <section class="testimonials-section py-5 bg-light" id="testimonials">
+  <section class="testimonials-section py-5 bg-light" id="testimonials" aria-labelledby="testi-heading">
     <div class="container">
       <span class="section-label d-block text-center">Student Voices</span>
-      <h2 class="text-center section-heading mb-5">What Our Students Say</h2>
+      <h2 class="text-center section-heading mb-5" id="testi-heading">What Our Students Say</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col">
           <div class="testi-card p-4 rounded shadow h-100">
-            <span class="testi-quote">&ldquo;</span>
-            <img src="https://www.iqjita.com/testimonial-img/jasira.png" alt="Jasira P — Digital Marketing student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy">
+            <span class="testi-quote" aria-hidden="true">&ldquo;</span>
+            <img src="https://www.iqjita.com/testimonial-img/jasira.png" alt="Jasira P — Digital Marketing student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy" decoding="async">
             <h4 class="testi-name">Jasira P</h4>
             <p class="testi-course">Digital Marketing <span aria-label="5 out of 5 stars">★★★★★</span></p>
             <p class="testi-text">"The Digital Marketing course at IQJITA opened doors I never imagined. The six-month program offered the perfect mix of theory, practice, and career guidance."</p>
@@ -327,7 +419,7 @@
         </div>
         <div class="col">
           <div class="testi-card p-4 rounded shadow h-100">
-            <img src="https://www.iqjita.com/testimonial-img/anshid.png" alt="Anshid PP — Full Stack Development student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy">
+            <img src="https://www.iqjita.com/testimonial-img/anshid.png" alt="Anshid PP — Full Stack Development student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy" decoding="async">
             <h4 class="testi-name">Anshid PP</h4>
             <p class="testi-course">Full Stack Development <span aria-label="5 out of 5 stars">★★★★★</span></p>
             <p class="testi-text">"IQJITA's Web Designing program was incredible. The practical projects and personalized guidance helped me land my first big job as a web designer."</p>
@@ -335,7 +427,7 @@
         </div>
         <div class="col">
           <div class="testi-card p-4 rounded shadow h-100">
-            <img src="https://www.iqjita.com/testimonial-img/asif.png" alt="Asif CV — Graphic Designing student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy">
+            <img src="https://www.iqjita.com/testimonial-img/asif.png" alt="Asif CV — Graphic Designing student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy" decoding="async">
             <h4 class="testi-name">Asif CV</h4>
             <p class="testi-course">Graphic Designing <span aria-label="5 out of 5 stars">★★★★★</span></p>
             <p class="testi-text">"The Graphic Designing program at IQJITA was transformative. The hands-on projects and experienced faculty gave me the skills and confidence to launch my design career."</p>
@@ -343,7 +435,7 @@
         </div>
         <div class="col">
           <div class="testi-card p-4 rounded shadow h-100">
-            <img src="https://www.iqjita.com/testimonial-img/raheema.png" alt="Raheema OP — Office Administration student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy">
+            <img src="https://www.iqjita.com/testimonial-img/raheema.png" alt="Raheema OP — Office Administration student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy" decoding="async">
             <h4 class="testi-name">Raheema OP</h4>
             <p class="testi-course">Office Administration <span aria-label="5 out of 5 stars">★★★★★</span></p>
             <p class="testi-text">"IQJITA's Office Administration course prepared me for the challenges of the professional world. The practical training and expert guidance were invaluable in securing my dream job."</p>
@@ -351,7 +443,7 @@
         </div>
         <div class="col">
           <div class="testi-card p-4 rounded shadow h-100">
-            <img src="https://www.iqjita.com/testimonial-img/rishad.png" alt="Mohammed Rishad AT — Logistics &amp; Supply Chain Management student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy">
+            <img src="https://www.iqjita.com/testimonial-img/rishad.png" alt="Mohammed Rishad AT — Logistics &amp; Supply Chain Management student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy" decoding="async">
             <h4 class="testi-name">Mohammed Rishad AT</h4>
             <p class="testi-course">Logistics &amp; Supply Chain Management <span aria-label="5 out of 5 stars">★★★★★</span></p>
             <p class="testi-text">"The Logistics program at IQJITA was a game-changer for my career. The hands-on projects and real-world scenarios made learning exciting and effective."</p>
@@ -359,7 +451,7 @@
         </div>
         <div class="col">
           <div class="testi-card p-4 rounded shadow h-100">
-            <img src="https://www.iqjita.com/testimonial-img/shan.png" alt="Shan P — Human Resource Management student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy">
+            <img src="https://www.iqjita.com/testimonial-img/shan.png" alt="Shan P — Human Resource Management student at IQJITA Academy" class="testi-img rounded-circle mb-3" width="80" height="80" loading="lazy" decoding="async">
             <h4 class="testi-name">Shan P</h4>
             <p class="testi-course">Human Resource Management <span aria-label="5 out of 5 stars">★★★★★</span></p>
             <p class="testi-text">"IQJITA's HR Management course equipped me with the skills to thrive in a competitive industry. The practical training and expert mentorship helped me land my dream job."</p>
@@ -370,7 +462,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="contact-section-new" id="contact">
+  <section class="contact-section-new" id="contact" aria-labelledby="contact-heading">
     <div class="container-fluid px-0">
       <div class="row g-0 min-vh-contact">
 
@@ -378,7 +470,7 @@
         <div class="col-lg-5 contact-info-panel d-flex flex-column justify-content-center">
           <div class="contact-info-inner">
             <span class="section-label" style="background:rgba(255,255,255,0.15);color:#fff;">Let&rsquo;s Connect</span>
-            <h2 class="contact-big-heading">Get In<br>Touch.</h2>
+            <h2 class="contact-big-heading" id="contact-heading">Get In<br>Touch.</h2>
             <p class="contact-lead">We&rsquo;d love to hear from you. Reach out for admissions, queries, or just to say hello.</p>
 
             <div class="contact-info-list">
@@ -428,38 +520,38 @@
             <p class="contact-form-sub">Fill out the form and our team will get back to you within 24 hours.</p>
 
             <!-- Contact form — FormSubmit.co AJAX (no redirect) -->
-            <div id="cf-success" style="display:none;padding:1.5rem;background:#e6f4f1;border-radius:8px;text-align:center;">
-              <i class="fas fa-check-circle" style="font-size:2.5rem;color:#00838f;margin-bottom:.75rem;"></i>
+            <div id="cf-success" role="alert" aria-live="polite" style="display:none;padding:1.5rem;background:#e6f4f1;border-radius:8px;text-align:center;">
+              <i class="fas fa-check-circle" aria-hidden="true" style="font-size:2.5rem;color:#00838f;margin-bottom:.75rem;"></i>
               <h4 style="color:#00838f;margin:0 0 .5rem;">Message Sent!</h4>
               <p style="margin:0;color:#444;">Thank you for reaching out. We'll get back to you within 24 hours.</p>
             </div>
-            <form class="contact-form" id="contactForm" novalidate>
+            <form class="contact-form" id="contactForm" novalidate aria-label="Send us a message">
 
               <div class="row g-3">
                 <div class="col-sm-6">
                   <div class="cf-field">
-                    <input type="text" id="cf-name" name="Full Name" class="cf-input" placeholder=" ">
-                    <label for="cf-name" class="cf-label">Full Name <span class="text-danger">*</span></label>
-                    <span class="cf-error" id="err-name"></span>
+                    <input type="text" id="cf-name" name="Full Name" class="cf-input" placeholder=" " aria-required="true" aria-describedby="err-name" autocomplete="name">
+                    <label for="cf-name" class="cf-label">Full Name <span class="text-danger" aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                    <span class="cf-error" id="err-name" role="alert" aria-live="polite"></span>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="cf-field">
-                    <input type="tel" id="cf-phone" name="Phone Number" class="cf-input" placeholder=" ">
+                    <input type="tel" id="cf-phone" name="Phone Number" class="cf-input" placeholder=" " aria-describedby="err-phone" autocomplete="tel">
                     <label for="cf-phone" class="cf-label">Phone Number</label>
-                    <span class="cf-error" id="err-phone"></span>
+                    <span class="cf-error" id="err-phone" role="alert" aria-live="polite"></span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="cf-field">
-                    <input type="email" id="cf-email" name="Email Address" class="cf-input" placeholder=" ">
-                    <label for="cf-email" class="cf-label">Email Address <span class="text-danger">*</span></label>
-                    <span class="cf-error" id="err-email"></span>
+                    <input type="email" id="cf-email" name="Email Address" class="cf-input" placeholder=" " aria-required="true" aria-describedby="err-email" autocomplete="email">
+                    <label for="cf-email" class="cf-label">Email Address <span class="text-danger" aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                    <span class="cf-error" id="err-email" role="alert" aria-live="polite"></span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="cf-field">
-                    <select id="cf-course" name="Course Interested" class="cf-input cf-select">
+                    <select id="cf-course" name="Course Interested" class="cf-input cf-select" aria-required="true" aria-describedby="err-course">
                       <option value="" disabled selected hidden></option>
                       <option>Digital Marketing</option>
                       <option>Graphic Designing</option>
@@ -471,14 +563,14 @@
                       <option>International Marketing &amp; Corporate Sales</option>
                     </select>
                     <label for="cf-course" class="cf-label">Course Interested</label>
-                    <span class="cf-error" id="err-course"></span>
+                    <span class="cf-error" id="err-course" role="alert" aria-live="polite"></span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="cf-field">
-                    <textarea id="cf-message" name="Message" class="cf-input cf-textarea" placeholder=" " rows="4"></textarea>
+                    <textarea id="cf-message" name="Message" class="cf-input cf-textarea" placeholder=" " rows="4" aria-required="true" aria-describedby="err-message"></textarea>
                     <label for="cf-message" class="cf-label">Message</label>
-                    <span class="cf-error" id="err-message"></span>
+                    <span class="cf-error" id="err-message" role="alert" aria-live="polite"></span>
                   </div>
                 </div>
                 <div class="col-12">
@@ -495,13 +587,15 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="site-footer py-5">
     <div class="container">
       <div class="row g-4">
         <!-- Brand + Address -->
         <div class="col-lg-4">
-          <img src="https://www.iqjita.com/main-images/NewLogoIQ.png" alt="IQJITA Academy Logo" height="50" class="mb-3" loading="lazy">
+          <img src="https://www.iqjita.com/main-images/NewLogoIQ.png" alt="IQJITA Academy Logo" height="50" class="mb-3" loading="lazy" decoding="async" style="width:auto;">
           <address class="footer-address">
             4/483, 2nd Floor Smart Trade City, Kottakkal,<br>
             Malappuram Dt. Kerala — 676503<br>
@@ -559,8 +653,8 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS — deferred so it never blocks HTML parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
   <!-- Contact form AJAX submission with validation -->
   <script>
     (function () {
