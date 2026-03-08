@@ -427,7 +427,7 @@
             <h3 class="contact-form-heading">Send Us a Message</h3>
             <p class="contact-form-sub">Fill out the form and our team will get back to you within 24 hours.</p>
 
-            <!-- Form sends enquiry to iqjita@gmail.com via FormSubmit.co AJAX (no redirect) -->
+            <!-- Contact form — FormSubmit.co AJAX (no redirect) -->
             <div id="cf-success" style="display:none;padding:1.5rem;background:#e6f4f1;border-radius:8px;text-align:center;">
               <i class="fas fa-check-circle" style="font-size:2.5rem;color:#00838f;margin-bottom:.75rem;"></i>
               <h4 style="color:#00838f;margin:0 0 .5rem;">Message Sent!</h4>
@@ -438,20 +438,23 @@
               <div class="row g-3">
                 <div class="col-sm-6">
                   <div class="cf-field">
-                    <input type="text" id="cf-name" name="Full Name" class="cf-input" placeholder=" " required>
+                    <input type="text" id="cf-name" name="Full Name" class="cf-input" placeholder=" ">
                     <label for="cf-name" class="cf-label">Full Name <span class="text-danger">*</span></label>
+                    <span class="cf-error" id="err-name"></span>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="cf-field">
                     <input type="tel" id="cf-phone" name="Phone Number" class="cf-input" placeholder=" ">
                     <label for="cf-phone" class="cf-label">Phone Number</label>
+                    <span class="cf-error" id="err-phone"></span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="cf-field">
-                    <input type="email" id="cf-email" name="Email Address" class="cf-input" placeholder=" " required>
+                    <input type="email" id="cf-email" name="Email Address" class="cf-input" placeholder=" ">
                     <label for="cf-email" class="cf-label">Email Address <span class="text-danger">*</span></label>
+                    <span class="cf-error" id="err-email"></span>
                   </div>
                 </div>
                 <div class="col-12">
@@ -468,12 +471,14 @@
                       <option>International Marketing &amp; Corporate Sales</option>
                     </select>
                     <label for="cf-course" class="cf-label">Course Interested</label>
+                    <span class="cf-error" id="err-course"></span>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="cf-field">
                     <textarea id="cf-message" name="Message" class="cf-input cf-textarea" placeholder=" " rows="4"></textarea>
                     <label for="cf-message" class="cf-label">Message</label>
+                    <span class="cf-error" id="err-message"></span>
                   </div>
                 </div>
                 <div class="col-12">
@@ -556,42 +561,104 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Contact form AJAX submission -->
+  <!-- Contact form AJAX submission with validation -->
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = document.getElementById('cfSubmitBtn');
-      btn.disabled = true;
-      btn.innerHTML = 'Sending… <i class="fas fa-spinner fa-spin"></i>';
+    (function () {
+      var form = document.getElementById('contactForm');
 
-      var data = new FormData(this);
-      data.append('_subject', 'New Enquiry from 2nd Web \u2014 IQJITA Academy');
-      data.append('_captcha', 'false');
-      data.append('_template', 'table');
+      function showError(id, msg) {
+        var el = document.getElementById(id);
+        el.textContent = msg;
+        el.style.display = msg ? 'block' : 'none';
+        var input = el.previousElementSibling && el.previousElementSibling.tagName === 'LABEL'
+          ? el.previousElementSibling.previousElementSibling
+          : el.previousElementSibling;
+        if (input) input.classList.toggle('cf-input-error', !!msg);
+      }
 
-      fetch('https://formsubmit.co/ajax/hisham1869@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      })
-      .then(function(res) {
-        if (!res.ok) throw new Error('Network error');
-        return res.json();
-      })
-      .then(function(json) {
-        if (json.success === 'true' || json.success === true) {
-          document.getElementById('contactForm').style.display = 'none';
-          document.getElementById('cf-success').style.display = 'block';
-        } else {
-          throw new Error('Submission failed');
-        }
-      })
-      .catch(function() {
-        btn.disabled = false;
-        btn.innerHTML = 'Send Message &nbsp;<i class="fas fa-paper-plane"></i>';
-        alert('Something went wrong. Please try again or call us directly at +91 6235774801.');
+      function clearError(id) { showError(id, ''); }
+
+      // Clear error on user input
+      ['cf-name','cf-phone','cf-email','cf-course','cf-message'].forEach(function(fid) {
+        var el = document.getElementById(fid);
+        if (el) el.addEventListener('input', function() { clearError('err-' + fid.replace('cf-','')); });
       });
-    });
+
+      function validate() {
+        var ok = true;
+        var name  = document.getElementById('cf-name').value.trim();
+        var phone = document.getElementById('cf-phone').value.trim();
+        var email = document.getElementById('cf-email').value.trim();
+        var course= document.getElementById('cf-course').value.trim();
+        var msg   = document.getElementById('cf-message').value.trim();
+
+        if (!name) {
+          showError('err-name', 'Full name is required.'); ok = false;
+        } else if (name.length < 2) {
+          showError('err-name', 'Please enter a valid name.'); ok = false;
+        } else { clearError('err-name'); }
+
+        if (phone && !/^[\d\s\+\-\(\)]{7,15}$/.test(phone)) {
+          showError('err-phone', 'Enter a valid phone number.'); ok = false;
+        } else { clearError('err-phone'); }
+
+        if (!email) {
+          showError('err-email', 'Email address is required.'); ok = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showError('err-email', 'Enter a valid email address.'); ok = false;
+        } else { clearError('err-email'); }
+
+        if (!course) {
+          showError('err-course', 'Please select a course.'); ok = false;
+        } else { clearError('err-course'); }
+
+        if (!msg) {
+          showError('err-message', 'Please enter your message.'); ok = false;
+        } else if (msg.length < 10) {
+          showError('err-message', 'Message must be at least 10 characters.'); ok = false;
+        } else { clearError('err-message'); }
+
+        return ok;
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!validate()) return;
+
+        var btn = document.getElementById('cfSubmitBtn');
+        btn.disabled = true;
+        btn.innerHTML = 'Sending… <i class="fas fa-spinner fa-spin"></i>';
+
+        var data = new FormData(form);
+        data.append('_subject', 'New Enquiry from 2nd Web \u2014 IQJITA Academy');
+        data.append('_captcha', 'false');
+        data.append('_template', 'table');
+
+        var _e = atob('aGlzaGFtMTg2OUBnbWFpbC5jb20=');
+        fetch('https://formsubmit.co/ajax/' + _e, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        })
+        .then(function(res) {
+          if (!res.ok) throw new Error('Network error');
+          return res.json();
+        })
+        .then(function(json) {
+          if (json.success === 'true' || json.success === true) {
+            form.style.display = 'none';
+            document.getElementById('cf-success').style.display = 'block';
+          } else {
+            throw new Error('Submission failed');
+          }
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.innerHTML = 'Send Message &nbsp;<i class="fas fa-paper-plane"></i>';
+          alert('Something went wrong. Please try again or call us at +91 6235774801.');
+        });
+      });
+    })();
   </script>
   <!-- Scrollspy -->
   <script>
