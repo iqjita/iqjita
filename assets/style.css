@@ -483,17 +483,6 @@ body {
 .contact-form .cf-textarea { min-height: 110px; padding-top: 22px; resize: vertical; }
 .contact-form .cf-select { padding-top: 18px; padding-bottom: 6px; cursor: pointer; }
 
-/* reCAPTCHA */
-.cf-recaptcha { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.cf-recaptcha .g-recaptcha { transform-origin: left top; }
-.cf-recaptcha-error {
-  display: none;
-  color: #dc3545;
-  font-size: 0.82rem;
-  font-weight: 600;
-  margin: 0;
-}
-
 .cf-submit {
   width: 100%;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
